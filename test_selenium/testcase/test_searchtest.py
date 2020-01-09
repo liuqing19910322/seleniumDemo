@@ -14,6 +14,7 @@ class TestDefaultSuite():
         pass
         # self.driver.quit()
 
+# testcase1：打开testerhome首页，然后搜索社团，点击第一个帖子
     def test_searchtest(self):
         self.driver.get("https://testerhome.com/")
         self.driver.find_element(By.CSS_SELECTOR, '#main-nav-menu > ul > li:nth-child(4) > a').click()
