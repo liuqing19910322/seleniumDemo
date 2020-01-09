@@ -15,7 +15,7 @@ class TestDefaultSuite():
     def teardown_method(self, method):
         self.driver.quit()
 
-# testcase1：进入testerhome，访问社团，访问霍格沃兹测试学院，访问最顶部的第一个帖子
+# testcase1：打开testerhome首页，然后搜索社团，点击第一个帖子
     def test_searchtest(self):
         self.driver.get("https://testerhome.com/")
         self.driver.find_element(By.CSS_SELECTOR, '#main-nav-menu > ul > li:nth-child(4) > a').click()
@@ -39,21 +39,28 @@ class TestDefaultSuite():
         for k, v in cookies.items():
             self.driver.add_cookie({"name": k, "value": v})
         self.driver.get(url)
+
         # 点击"添加联系人"
         self.driver.find_element(By.CSS_SELECTOR, 'div > div.member_colRight > div > div.js_party_info > div.js_has_member > div.js_operationBar_footer.ww_operationBar > a.qui_btn.ww_btn.js_add_member').click()
+
         # 点击姓名输入框
         self.driver.find_element(By.CSS_SELECTOR, '#username')
+
         # 输入姓名
         memberName = "测试"+ str(random.randint(1000,99999))
         self.driver.find_element(By.CSS_SELECTOR, '#username').send_keys(memberName)
+
         # 输入别名
         otherName = str(random.randint(10000000,99999999))
         self.driver.find_element(By.CSS_SELECTOR, '#memberAdd_acctid').send_keys(otherName)
+
         # 输入手机号
         mobile = str(random.randint(18000000000,18099999999))
         self.driver.find_element(By.XPATH, '//*[@id="memberAdd_phone"]').send_keys(mobile)
+
         # 滑动到页面底部
         js = "window.scrollTo(0,document.body.scrollHeight)"
         self.driver.execute_script(js)
+
         # 点击保存
         self.driver.find_element(By.CSS_SELECTOR, 'div > div.member_colRight > div > div:nth-child(4) > div > form > div:nth-child(3) > a.qui_btn.ww_btn.ww_btn_Blue.js_btn_continue').click()
